@@ -1,0 +1,30 @@
+apply plugin: 'application'
+
+mainClassName = 'hello.Challenge'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'io.dropwizard:dropwizard-core:1.1.0'
+    compile 'io.dropwizard:dropwizard-jdbi:1.1.0'
+	compile 'io.dropwizard:dropwizard-hibernate:1.0.1'
+    compile 'mysql:mysql-connector-java:6.0.6'
+}
+
+run {
+    args "server", "app.yaml"
+}
+
+task getDeps(type: Copy) {
+  from sourceSets.main.runtimeClasspath
+  into 'runtime/'
+}
+
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'hello.Challenge'
+    }
+}
