@@ -1,6 +1,5 @@
 apply plugin: 'application'
-
-mainClassName = 'hello.Challenge'
+mainClassName = 'chat.Challenge'
 
 repositories {
     jcenter()
@@ -22,9 +21,8 @@ task getDeps(type: Copy) {
   into 'runtime/'
 }
 
-
 jar {
     manifest {
-        attributes 'Main-Class': 'hello.Challenge'
+        attributes 'Main-Class': 'chat.Challenge'
     }
 }

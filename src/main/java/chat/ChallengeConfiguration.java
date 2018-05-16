@@ -1,4 +1,4 @@
-package hello;
+package chat;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
