@@ -36,7 +36,7 @@ create table employees(
 );
 
 7/ Demo restful access for GET, localhost:8000/employees
-create table login (
+create table user (
     -- auto-generated primary key
     id bigint primary key not null auto_increment,
     username varchar(255) not null,
@@ -44,3 +44,18 @@ create table login (
     securityQuestion  varchar(255) null,
     securityAnswer varchar(255) null
 );
+
+8/ 
+create table message (
+    -- auto-generated primary key
+    id bigint primary key not null auto_increment,
+    from varchar(255) not null,
+    to varchar(255) not null,
+    messageType  varchar(255) null,
+    body varchar(255) null
+);
+
+
+select count(*) from message 
+where from = 'user1' and to = 'user2' OR
+from = 'user2' and to = 'user1' 
