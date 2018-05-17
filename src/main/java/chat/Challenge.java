@@ -13,11 +13,12 @@ import io.dropwizard.hibernate.*;
 public class Challenge extends Application<ChallengeConfiguration> {
   
 	private final HibernateBundle<ChallengeConfiguration> hibernate = 
-		new HibernateBundle<ChallengeConfiguration>(  Employee.class) {
-				@Override
-	    		public DataSourceFactory getDataSourceFactory(ChallengeConfiguration configuration) {
+		new HibernateBundle<ChallengeConfiguration>(Employee.class) {
+				
+			@Override
+				public DataSourceFactory getDataSourceFactory(ChallengeConfiguration configuration) {
 	    			return configuration.getDataSourceFactory();
-	    		}
+				}
 	};
 	
 	@Override
