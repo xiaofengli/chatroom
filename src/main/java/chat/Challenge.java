@@ -1,7 +1,9 @@
 package chat;
 import chat.data.EmployeeDAO;
+import chat.data.UserDAO;
 import chat.model.Employee;
 import chat.ws.EmployeesResource;
+import chat.ws.UserResource;
 import io.dropwizard.Application;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.setup.Bootstrap;
@@ -31,6 +33,9 @@ public class Challenge extends Application<ChallengeConfiguration> {
 	     // This is only for one table
 		 final EmployeeDAO employeeDAO = new EmployeeDAO(hibernate.getSessionFactory());
 		 env.jersey().register(new EmployeesResource(employeeDAO));
+
+		 final UserDAO userDAO = new UserDAO(hibernate.getSessionFactory());
+		 env.jersey().register(new UserResource(userDAO));
 		 
 		 
     }
