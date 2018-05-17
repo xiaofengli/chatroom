@@ -37,7 +37,7 @@ create table employees(
 );
 
 7/ Demo restful access for GET, localhost:8000/employees
-create table user (
+create table users (
     -- auto-generated primary key
     id bigint primary key not null auto_increment,
     username varchar(255) not null,
@@ -72,15 +72,11 @@ Query OK, 0 rows affected (0.04 sec)
  
 6/ For example code, 
 
-create table employees(
+create table woot(
     -- auto-generated primary key
     id bigint primary key not null auto_increment,
     first_name varchar(255) not null,
-    last_name varchar(255) not null,
-    -- employee position
-    e_position  varchar(255) not null,
-    phone  varchar(255) not null,
-    e_mail varchar(255) not null
+    last_name varchar(255) not null
 );
 
 7/ Demo restful access for GET, localhost:8000/employees
@@ -89,16 +85,16 @@ create table user (
     id bigint primary key not null auto_increment,
     username varchar(255) not null,
     password varchar(255) not null,
-    securityQuestion  varchar(255) null,
-    securityAnswer varchar(255) null
+    security_question  varchar(255) null,
+    security_answer varchar(255) null
 );
 
 8/ 
-create table message (
+create table messages (
     -- auto-generated primary key
     id bigint primary key not null auto_increment,
-    from varchar(255) not null,
-    to varchar(255) not null,
+    from_user varchar(255) not null,
+    to_user varchar(255) not null,
     messageType  varchar(255) null,
     body varchar(255) null
 );

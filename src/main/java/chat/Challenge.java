@@ -1,8 +1,12 @@
 package chat;
 import chat.data.EmployeeDAO;
+import chat.data.MessageDAO;
 import chat.data.UserDAO;
 import chat.model.Employee;
+import chat.model.Message;
+import chat.model.User;
 import chat.ws.EmployeesResource;
+import chat.ws.MessageResource;
 import chat.ws.UserResource;
 import io.dropwizard.Application;
 import io.dropwizard.db.DataSourceFactory;
@@ -13,7 +17,7 @@ import io.dropwizard.hibernate.*;
 public class Challenge extends Application<ChallengeConfiguration> {
   
 	private final HibernateBundle<ChallengeConfiguration> hibernate = 
-		new HibernateBundle<ChallengeConfiguration>(Employee.class) {
+		new HibernateBundle<ChallengeConfiguration>(Employee.class, User.class, Message.class) {
 				
 			@Override
 				public DataSourceFactory getDataSourceFactory(ChallengeConfiguration configuration) {
@@ -37,6 +41,10 @@ public class Challenge extends Application<ChallengeConfiguration> {
 
 		 final UserDAO userDAO = new UserDAO(hibernate.getSessionFactory());
 		 env.jersey().register(new UserResource(userDAO));
+		 
+		 final MessageDAO messageDAO = new MessageDAO(hibernate.getSessionFactory());
+		 env.jersey().register(new MessageResource(messageDAO));
+		 
 		 
 		 
     }

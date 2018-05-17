@@ -16,8 +16,8 @@ import javax.persistence.Table;
             query = "select e from User e"),
     @NamedQuery(name = "chat.model.User.findByName",
             query = "select e from User e "
-            + "where e.firstName like :name "
-            + "or e.lastName like :name")
+            + "where e.username like :name "
+            )
 })
 public class User {
     /**
@@ -39,10 +39,10 @@ public class User {
     /**
      * User position.
      */
-    @Column(name = "securityQuestion")
+    @Column(name = "security_question")
     private String securityQuestion;
 
-    @Column(name = "securityAnswer")
+    @Column(name = "security_answer")
     private String securityAnswer;
     
     /**

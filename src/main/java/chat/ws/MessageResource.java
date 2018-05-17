@@ -11,28 +11,30 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import java.sql.*;
-import chat.data.EmployeeDAO;
-import chat.data.UserDAO;
-import chat.model.Employee;
+
+
+import chat.data.MessageDAO;
+
+
+import chat.model.Message;
 import chat.model.User;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
 
-@Path("/users")
+@Path("/messages")
 @Produces(MediaType.APPLICATION_JSON)
-public class UserResource {
+public class MessageResource {
     /**
      * The DAO object to manipulate employees.
      */
-    private UserDAO userDAO;
+    private MessageDAO messageDAO;
     /**
      * Constructor.
      *
      * @param userDAO DAO object to manipulate employees.
      */
-    public UserResource(UserDAO userDAO) {
-        this.userDAO = userDAO;
+    public MessageResource(MessageDAO messageDAO) {
+        this.messageDAO = messageDAO;
     }
     /**
      * Looks for employees whose first or last name contains the passed
@@ -45,13 +47,13 @@ public class UserResource {
      */
     @GET
     @UnitOfWork
-    public List<User> findByName(
+    public List<Message> findByName(
             @QueryParam("name") Optional<String> name
     ) {
         if (name.isPresent()) {
-            return userDAO.findByName(name.get());
+            return messageDAO.findByName(name.get());
         } else {
-            return userDAO.findAll();
+            return messageDAO.findAll();
         }
     }
     /**
@@ -64,19 +66,17 @@ public class UserResource {
     @GET
     @Path("/{id}")
     @UnitOfWork
-    public Optional<User> findById(@PathParam("id") LongParam id) {
-        return userDAO.findById(id.get());
+    public Optional<Message> findById(@PathParam("id") LongParam id) {
+        return messageDAO.findById(id.get());
         
     }
     
-    
-    
     @POST
     @UnitOfWork
-    public User add(@Valid User user) {
-    	User biguser=new User("hanfei","deng","mao","zedong");
-        User newUser = userDAO.insert(biguser);
+    public Message add(@Valid Message message) {
+    	Message bigmessage =new Message("hello", "helli", "string", "ohla");
+        Message newMessage = messageDAO.insert(bigmessage);
 
-        return newUser;
+        return newMessage;
     }
 }
