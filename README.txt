@@ -36,7 +36,7 @@ create table employees(
 );
 
 7/ Demo restful access for GET, localhost:8000/employees
-create table login (
+create table user (
     -- auto-generated primary key
     id bigint primary key not null auto_increment,
     username varchar(255) not null,
