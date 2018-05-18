@@ -1,8 +1,9 @@
 package chat.ws;
 
+import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-
 import javax.validation.Valid;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -11,13 +12,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-
-
 import chat.data.MessageDAO;
-
-
 import chat.model.Message;
-import chat.model.User;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
 
@@ -73,8 +69,8 @@ public class MessageResource {
     
     @POST
     @UnitOfWork
-    public Message add(@Valid Message message) {
-    	Message bigmessage =new Message("hello", "helli", "string", "ohla");
+    public Message writeMessageToDatabase(@Valid Message message) {
+    	Message bigmessage =new Message("hello", "helli", "string", "ohla", LocalDateTime.now());
         Message newMessage = messageDAO.insert(bigmessage);
 
         return newMessage;

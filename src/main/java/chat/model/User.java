@@ -19,6 +19,7 @@ import javax.persistence.Table;
             + "where e.username like :name "
             )
 })
+
 public class User {
     /**
      * Entity's unique identifier.

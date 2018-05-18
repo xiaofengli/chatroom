@@ -68,9 +68,10 @@ create table user (
 create table messages (
     -- auto-generated primary key
     id bigint primary key not null auto_increment,
-    from_user varchar(255) not null,
-    to_user varchar(255) not null,
-    messageType  varchar(255) null,
-    body varchar(255) null
+    sender varchar(255) not null,
+    receiver varchar(255) not null,
+    message_type  varchar(255) null,
+    body varchar(255) null,
+    log_time DATETIME not null
 );
 `
