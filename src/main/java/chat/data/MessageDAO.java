@@ -3,19 +3,20 @@ package chat.data;
 import java.util.List;
 import java.util.Optional;
 import org.hibernate.SessionFactory;
-import chat.model.Employee;
+
+import chat.model.Message;
 import chat.model.User;
 import io.dropwizard.hibernate.AbstractDAO;
 
 // https://dzone.com/articles/getting-started-with-dropwizard-connecting-to-a-da
 	
-public class UserDAO extends AbstractDAO<User> {
+public class MessageDAO extends AbstractDAO<Message> {
     /**
      * Constructor.
      *
      * @param sessionFactory Hibernate session factory.
      */
-    public UserDAO(SessionFactory sessionFactory) {
+    public MessageDAO(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
     /**
@@ -23,8 +24,8 @@ public class UserDAO extends AbstractDAO<User> {
      *
      * @return list of all employees stored in the database
      */
-    public List<User> findAll() {
-        return list(namedQuery("chat.model.User.findAll"));
+    public List<Message> findAll() {
+        return list(namedQuery("chat.model.Message.findAll"));
     }
     /**
      * Looks for employees whose first or last name contains the passed
@@ -34,11 +35,11 @@ public class UserDAO extends AbstractDAO<User> {
      * @return list of employees whose first or last name contains the passed
      * parameter as a substring.
      */
-    public List<User> findByName(String name) {
+    public List<Message> findByName(String name) {
         StringBuilder builder = new StringBuilder("%");
         builder.append(name).append("%");
         return list(
-                namedQuery("chat.model.User.findByName")
+                namedQuery("chat.model.Message.findByName")
                 .setParameter("name", builder.toString())
         );
     }
@@ -49,17 +50,19 @@ public class UserDAO extends AbstractDAO<User> {
      * @return Optional containing the found employee or an empty Optional
      * otherwise.
      */
-    public Optional<User> findById(long id) {
+    public Optional<Message> findById(long id) {
         return Optional.ofNullable(get(id));
     }
+    
     
     /**
      * Method to post to database
      */
     
-    public User insert(User user) {
-    	return persist(user);
+    public Message insert(Message message) {
+    	return persist(message);
     }
     
+
     
 }

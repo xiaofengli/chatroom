@@ -7,6 +7,6 @@ database:
   driverClass: com.mysql.cj.jdbc.Driver
   user: username
   password: pa$$word
-  url: jdbc:mysql://localhost:3306/challenge
+  url: jdbc:mysql://localhost:3306/challenge?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
   properties:
     useSSL: false
