@@ -1,30 +1,36 @@
-<<<<<<< HEAD
-0/ gradle getDeps
-jars are found in runtime/
+##Project instruction
 
-0.5/ add jars to the build path.
+### `gradle getDeps` task
+download jars and copy them, found them in runtime/
 
-1/ gradlew run
+### add jars to the build path.
 
-2/ install mysql 5.7
+### `gradlew run`
+Check project and start jetty server
 
-3/ Then if see the following issues, then need to fix it by root account. 
+### install mysql 5.7
+Use version 5.7 instead of v8 due to some unsolved issue. Too much time consuming set up..
+
+### Create a db account with root login 
 
 mysql> CREATE USER 'username'@'localhost' IDENTIFIED WITH mysql_native_password BY 'pa$$word';
 Query OK, 0 rows affected (0.06 sec)
 
+### Grant db table permission
 Login with root in mysql and do the following,
 
 mysql> grant ALL privileges on Challenge.* to 'username'@'localhost';
 Query OK, 0 rows affected (0.04 sec)
 
-4/ don't need to specify yml file and db config as it is in the gradle file
+### YAML file, db configuration, db username and password
+don't need to specify yml file and db config as it is in the gradle file
 
-5/ Run jetty server
+### Run jetty server (not needed)
  java -jar target\DropWizardExample-0.0.1-SNAPSHOT.jar server
  
-6/ For example code, 
-
+### Tables 
+Demo table copied from somewhere
+/*
 create table employees(
     -- auto-generated primary key
     id bigint primary key not null auto_increment,
@@ -35,8 +41,9 @@ create table employees(
     phone  varchar(255) not null,
     e_mail varchar(255) not null
 );
+*/
 
-7/ Demo restful access for GET, localhost:8000/employees
+Demo restful access for GET, localhost:8000/employees
 create table users (
     -- auto-generated primary key
     id bigint primary key not null auto_increment,
@@ -46,40 +53,8 @@ create table users (
     securityAnswer varchar(255) null
 );
 
-0/ gradle getDeps
-jars are found in runtime/
-
-0.5/ add jars to the build path.
-
-1/ gradlew run
-
-2/ install mysql 5.7
-
-3/ Then if see the following issues, then need to fix it by root account. 
-
-mysql> CREATE USER 'username'@'localhost' IDENTIFIED WITH mysql_native_password BY 'pa$$word';
-Query OK, 0 rows affected (0.06 sec)
-
-Login with root in mysql and do the following,
-
-mysql> grant ALL privileges on Challenge.* to 'username'@'localhost';
-Query OK, 0 rows affected (0.04 sec)
-
-4/ don't need to specify yml file and db config as it is in the gradle file
-
-5/ Run jetty server
- java -jar target\DropWizardExample-0.0.1-SNAPSHOT.jar server
- 
-6/ For example code, 
-
-create table woot(
-    -- auto-generated primary key
-    id bigint primary key not null auto_increment,
-    first_name varchar(255) not null,
-    last_name varchar(255) not null
-);
-
-7/ Demo restful access for GET, localhost:8000/employees
+Our tables,
+`
 create table user (
     -- auto-generated primary key
     id bigint primary key not null auto_increment,
@@ -87,9 +62,9 @@ create table user (
     password varchar(255) not null,
     security_question  varchar(255) null,
     security_answer varchar(255) null
-);
+);`
 
-8/ 
+`
 create table messages (
     -- auto-generated primary key
     id bigint primary key not null auto_increment,
@@ -98,9 +73,4 @@ create table messages (
     messageType  varchar(255) null,
     body varchar(255) null
 );
-
-
-select count(*) from message 
-where from = 'user1' and to = 'user2' OR
-from = 'user2' and to = 'user1' 
-
+`
