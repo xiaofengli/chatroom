@@ -23,25 +23,25 @@ import io.dropwizard.jersey.params.LongParam;
 @Produces(MediaType.APPLICATION_JSON)
 public class UserResource {
     /**
-     * The DAO object to manipulate employees.
+     * The DAO object to manipulate users.
      */
     private UserDAO userDAO;
     /**
      * Constructor.
      *
-     * @param userDAO DAO object to manipulate employees.
+     * @param userDAO DAO object to manipulate users.
      */
     public UserResource(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
     /**
-     * Looks for employees whose first or last name contains the passed
+     * Looks for users whose first or last name contains the passed
      * parameter as a substring. If name argument was not passed, returns all
-     * employees stored in the database.
+     * users stored in the database.
      *
      * @param name query parameter
-     * @return list of employees whose first or last name contains the passed
-     * parameter as a substring or list of all employees stored in the database.
+     * @return list of users whose first or last name contains the passed
+     * parameter as a substring or list of all users stored in the database.
      */
     @GET
     @UnitOfWork
@@ -70,13 +70,11 @@ public class UserResource {
     }
     
     
-    
     @POST
+    @Path("/add")
     @UnitOfWork
     public User add(@Valid User user) {
-    	User biguser=new User("hanfei","deng","mao","zedong");
-        User newUser = userDAO.insert(biguser);
-
+        User newUser = userDAO.insert(user);
         return newUser;
     }
 }
