@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
+import java.util.Date; 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -52,6 +53,29 @@ public class MessageResource {
             return messageDAO.findAll();
         }
     }
+    
+    /**
+     * Looks for employees whose first or last name contains the passed
+     * parameter as a substring. If name argument was not passed, returns all
+     * employees stored in the database.
+     *
+     * @param name query parameter
+     * @return list of employees whose first or last name contains the passed
+     * parameter as a substring or list of all employees stored in the database.
+     */
+    @GET
+    @UnitOfWork
+    @Path("/search")
+    public List<Message> findByUser(
+            @QueryParam("sender") Optional<String> sender,
+            @QueryParam("receiver") Optional<String> receiver
+    ) {
+        if (sender.isPresent() && receiver.isPresent()) {
+            return messageDAO.findByUser(sender.get(),receiver.get());
+        } else {
+            return messageDAO.findAll();
+        }
+    }
     /**
      * Method looks for an employee by her id.
      *
@@ -70,7 +94,10 @@ public class MessageResource {
     @POST
     @UnitOfWork
     public Message writeMessageToDatabase(@Valid Message message) {
-    	Message bigmessage =new Message("hello", "helli", "string", "ohla", LocalDateTime.now());
+    	java.util.Date dt=new java.util.Date();
+    	java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    	String currentTime = sdf.format(dt);
+    	Message bigmessage =new Message("hello", "helli", "string", "ohla", currentTime);
         Message newMessage = messageDAO.insert(bigmessage);
 
         return newMessage;

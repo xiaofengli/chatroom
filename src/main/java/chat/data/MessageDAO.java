@@ -3,7 +3,6 @@ package chat.data;
 import java.util.List;
 import java.util.Optional;
 import org.hibernate.SessionFactory;
-
 import chat.model.Message;
 import chat.model.User;
 import io.dropwizard.hibernate.AbstractDAO;
@@ -41,6 +40,26 @@ public class MessageDAO extends AbstractDAO<Message> {
         return list(
                 namedQuery("chat.model.Message.findByName")
                 .setParameter("name", builder.toString())
+        );
+    }
+    
+    /**
+     * Looks for employees whose first or last name contains the passed
+     * parameter as a substring.
+     *
+     * @param name query parameter
+     * @return list of employees whose first or last name contains the passed
+     * parameter as a substring.
+     */
+    public List<Message> findByUser(String sender, String receiver ) {
+        StringBuilder sender_build = new StringBuilder("%");
+        StringBuilder receiver_build = new StringBuilder("%");
+        sender_build.append(sender).append("%");
+        receiver_build.append(receiver).append("%");
+        
+        return list(
+                namedQuery("chat.model.Message.findByName")
+                .setParameter("name", sender_build.toString()).setParameter("name1", receiver_build.toString())
         );
     }
     /**
