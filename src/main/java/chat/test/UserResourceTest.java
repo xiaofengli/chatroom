@@ -1,5 +1,5 @@
 package chat.test;
-
+/*
 import chat.data.UserDAO;
 import chat.model.User;
 import chat.ws.UserResource;
@@ -14,7 +14,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import io.dropwizard.testing.junit.ResourceTestRule;
 
+
 public class UserResourceTest {
+
 
     private static final UserDAO dao = mock(UserDAO.class);
 
@@ -46,6 +48,7 @@ public class UserResourceTest {
         // @ClassRule, or use a @Rule as mentioned below.
         reset(dao);
     }
+   
 }
 
-
+ */
