@@ -55,7 +55,7 @@ public class Message {
      */
     private String body;
     
-    @Column(name = "logg_time")
+    @Column(name = "log_time")
     private String logTime;
     
     /**
