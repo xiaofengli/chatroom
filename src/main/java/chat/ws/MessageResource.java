@@ -99,6 +99,7 @@ public class MessageResource {
     @Path("/write")
     @UnitOfWork
     public Message writeMessageToDatabase(@Valid Message message) {
+    	message.setLogTime(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date()) );
         Message newMessage = messageDAO.insert(message);
         return newMessage;
     }
