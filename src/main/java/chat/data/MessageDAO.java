@@ -58,7 +58,7 @@ public class MessageDAO extends AbstractDAO<Message> {
         receiver_build.append(receiver).append("%");
         
         return list(
-                namedQuery("chat.model.Message.findByName")
+                namedQuery("chat.model.Message.findByUser")
                 .setParameter("name", sender_build.toString()).setParameter("name1", receiver_build.toString())
         );
     }

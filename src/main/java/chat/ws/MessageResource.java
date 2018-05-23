@@ -22,25 +22,25 @@ import io.dropwizard.jersey.params.LongParam;
 @Produces(MediaType.APPLICATION_JSON)
 public class MessageResource {
     /**
-     * The DAO object to manipulate employees.
+     * The DAO object to manipulate messages.
      */
     private MessageDAO messageDAO;
     /**
      * Constructor.
      *
-     * @param userDAO DAO object to manipulate employees.
+     * @param userDAO DAO object to manipulate messages.
      */
     public MessageResource(MessageDAO messageDAO) {
         this.messageDAO = messageDAO;
     }
     /**
-     * Looks for employees whose first or last name contains the passed
+     * Looks for messages whose first or last name contains the passed
      * parameter as a substring. If name argument was not passed, returns all
-     * employees stored in the database.
+     * messages stored in the database.
      *
      * @param name query parameter
-     * @return list of employees whose first or last name contains the passed
-     * parameter as a substring or list of all employees stored in the database.
+     * @return list of messages whose first or last name contains the passed
+     * parameter as a substring or list of all messages stored in the database.
      */
     @GET
     @UnitOfWork
@@ -55,13 +55,13 @@ public class MessageResource {
     }
     
     /**
-     * Looks for employees whose first or last name contains the passed
+     * Looks for messages whose first or last name contains the passed
      * parameter as a substring. If name argument was not passed, returns all
-     * employees stored in the database.
+     * messages stored in the database.
      *
      * @param name query parameter
-     * @return list of employees whose first or last name contains the passed
-     * parameter as a substring or list of all employees stored in the database.
+     * @return list of messages whose first or last name contains the passed
+     * parameter as a substring or list of all messages stored in the database.
      */
     @GET
     @UnitOfWork
@@ -69,10 +69,14 @@ public class MessageResource {
     public List<Message> findByUser(
             @QueryParam("sender") Optional<String> sender,
             @QueryParam("receiver") Optional<String> receiver
-    ) {
+    ) { 
+    	System.out.println(sender);
+        System.out.println(receiver);
         if (sender.isPresent() && receiver.isPresent()) {
             return messageDAO.findByUser(sender.get(),receiver.get());
         } else {
+        	System.out.println(sender);
+            System.out.println(receiver);
             return messageDAO.findAll();
         }
     }
@@ -92,14 +96,11 @@ public class MessageResource {
     }
     
     @POST
+    @Path("/write")
     @UnitOfWork
     public Message writeMessageToDatabase(@Valid Message message) {
-    	java.util.Date dt=new java.util.Date();
-    	java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    	String currentTime = sdf.format(dt);
-    	Message bigmessage =new Message("hello", "helli", "string", "ohla", currentTime);
-        Message newMessage = messageDAO.insert(bigmessage);
-
+    	message.setLogTime(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date()) );
+        Message newMessage = messageDAO.insert(message);
         return newMessage;
     }
 }
