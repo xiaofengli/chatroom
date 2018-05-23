@@ -67,7 +67,8 @@ create table user (
     security_question  varchar(255) null,
     security_answer varchar(255) null,
     UNIQUE(username)
-);`
+);
+`
 
 `
 create table messages (

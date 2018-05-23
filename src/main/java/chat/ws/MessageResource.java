@@ -47,6 +47,8 @@ public class MessageResource {
     public List<Message> findByName(
             @QueryParam("name") Optional<String> name
     ) {
+    	System.out.println("I am not here");
+
         if (name.isPresent()) {
             return messageDAO.findByName(name.get());
         } else {
@@ -73,6 +75,7 @@ public class MessageResource {
     	System.out.println(sender);
         System.out.println(receiver);
         if (sender.isPresent() && receiver.isPresent()) {
+        	System.out.println("found the dude");
             return messageDAO.findByUser(sender.get(),receiver.get());
         } else {
         	System.out.println(sender);
@@ -100,6 +103,8 @@ public class MessageResource {
     @UnitOfWork
     public Message writeMessageToDatabase(@Valid Message message) {
     	message.setLogTime(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date()) );
+    	System.out.println("I am here");
+    //	Message bigmessage=new Message("ohla","ohla","hello","hello",time);
         Message newMessage = messageDAO.insert(message);
         return newMessage;
     }
