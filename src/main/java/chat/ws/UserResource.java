@@ -74,7 +74,7 @@ public class UserResource {
     @POST
     @UnitOfWork
     public User add(@Valid User user) {
-    	User biguser=new User("hanfei","deng","mao","zedong");
+    	User biguser=new User("hanfei","deng","mao","zedong","hello","hello");
         User newUser = userDAO.insert(biguser);
 
         return newUser;
