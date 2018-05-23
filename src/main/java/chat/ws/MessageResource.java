@@ -69,10 +69,14 @@ public class MessageResource {
     public List<Message> findByUser(
             @QueryParam("sender") Optional<String> sender,
             @QueryParam("receiver") Optional<String> receiver
-    ) {
+    ) { 
+    	System.out.println(sender);
+        System.out.println(receiver);
         if (sender.isPresent() && receiver.isPresent()) {
             return messageDAO.findByUser(sender.get(),receiver.get());
         } else {
+        	System.out.println(sender);
+            System.out.println(receiver);
             return messageDAO.findAll();
         }
     }
@@ -95,12 +99,7 @@ public class MessageResource {
     @Path("/write")
     @UnitOfWork
     public Message writeMessageToDatabase(@Valid Message message) {
-    	java.util.Date dt=new java.util.Date();
-    	java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    	String currentTime = sdf.format(dt);
-    	Message bigmessage =new Message("hello", "helli", "string", "ohla", currentTime);
-        Message newMessage = messageDAO.insert(bigmessage);
-
+        Message newMessage = messageDAO.insert(message);
         return newMessage;
     }
 }

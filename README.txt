@@ -67,6 +67,6 @@ create table messages (
     receiver varchar(255) not null,
     message_type  varchar(255) null,
     body varchar(255) null,
-    logg_time DATETIME not null
+    log_time DATETIME not null
 );
 `

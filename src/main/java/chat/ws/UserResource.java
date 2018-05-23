@@ -71,7 +71,7 @@ public class UserResource {
     
     
     @POST
-    @Path("/add")
+    @Path("/register")
     @UnitOfWork
     public User add(@Valid User user) {
         User newUser = userDAO.insert(user);
