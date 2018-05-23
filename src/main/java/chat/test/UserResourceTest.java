@@ -23,7 +23,7 @@ public class UserResourceTest {
             .addResource(new UserResource(dao))
             .build();
 
-    private final User user = new User("blah@example.com", "$pa%%word",null,null);
+    private final User user = new User("blah@example.com", "$pa%%word",null, null,null,null);
 
     @Before
     public void setup() {
