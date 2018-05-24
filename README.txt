@@ -44,6 +44,16 @@ create table employees(
 */
 
 Demo restful access for GET, localhost:8000/employees
+<<<<<<< HEAD
+create table users (
+    -- auto-generated primary key
+    id bigint primary key not null auto_increment,
+    username varchar(255) not null,
+    password varchar(255) not null,
+    securityQuestion  varchar(255) null,
+    securityAnswer varchar(255) null,
+    UNIQUE(username)
+);
 
 Our tables,
 `
@@ -57,7 +67,8 @@ create table user (
     security_question  varchar(255) null,
     security_answer varchar(255) null,
     UNIQUE(username)
-);`
+);
+`
 
 `
 create table messages (

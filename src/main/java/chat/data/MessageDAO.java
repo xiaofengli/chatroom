@@ -52,11 +52,14 @@ public class MessageDAO extends AbstractDAO<Message> {
      * parameter as a substring.
      */
     public List<Message> findByUser(String sender, String receiver ) {
+    	System.out.println(sender);
+    	System.out.println(receiver);
         StringBuilder sender_build = new StringBuilder("%");
         StringBuilder receiver_build = new StringBuilder("%");
         sender_build.append(sender).append("%");
         receiver_build.append(receiver).append("%");
-        
+        System.out.println(sender_build.toString());
+    	System.out.println(receiver_build.toString());
         return list(
                 namedQuery("chat.model.Message.findByUser")
                 .setParameter("name", sender_build.toString()).setParameter("name1", receiver_build.toString())

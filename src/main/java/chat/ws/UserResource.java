@@ -1,3 +1,4 @@
+
 package chat.ws;
 
 import java.util.List;
@@ -78,3 +79,4 @@ public class UserResource {
         return newUser;
     }
 }
+
